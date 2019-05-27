@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 开启注解的扫描 -->
+	<context:component-scan base-package="com.chzu.football"/>
+	
+	 
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/footballclub"/>
+		<property name="user" value="root"/>
+		<property name="password" value="zhoukobeAA"/>
+	</bean> 
+	<!-- 编写bean，名称都是固定，（hibernate整合spring第二种是没有.cfg.xml配置文件）,且会自动生成sessionFactory（在sessionFactory中注入原来.cfg.xml中的属性），
+	正好hibernatetemplate的使用需要session，所以正好要注入这个sessionFactory，而事务也是由session开启，所以事务管理也要注入这个id -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	
+		<!-- 先加载连接池 -->
+		<property name="dataSource" ref="dataSource"/>
+		
+		<!-- 加载方言，加载可选 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		
+		<!-- 引入映射的配置文件 ,可以在list中写多个映射文件的路径 -->
+ 		<property name="mappingResources">
+			<list>
+				<value>com/chzu/football/entity/User.hbm.xml</value>
+				<value>com/chzu/football/entity/Player.hbm.xml</value>
+				<value>com/chzu/football/entity/Order.hbm.xml</value>
+				<value>com/chzu/football/entity/Goods.hbm.xml</value>
+				<!-- <value>com/chzu/football/entity/Dict.hbm.xml</value> -->
+				<value>com/chzu/football/entity/AdminAndPlayers.hbm.xml</value>
+				<value>com/chzu/football/entity/AdminAndGoods.hbm.xml</value>
+				<value>com/chzu/football/entity/Forum.hbm.xml</value>
+				<value>com/chzu/football/entity/Post.hbm.xml</value>
+			</list>
+		</property> 
+	</bean>
+
+	<!-- 先配置平台事务管理器（管理事务，当正常时是可以提交事务的，而当出现异常时是不会提交事务的，防止当出现异常时异常后面的代码提交不了）,事务有session开启，所以也要在其中注入sessionFactory -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 开启事务的注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 配置customer模块 -->
+ 	 <!-- <bean id="customerService" class="com.epoint.crm.service.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"/>
+	</bean>
+	action的创建也交给spring管理
+	<bean id="customerAction" class="com.epoint.crm.action.CustomerAction" scope="prototype">
+		<property name="customerService" ref="customerService"></property>
+	</bean>
+	
+	<bean id="customerDao" class="com.epoint.crm.dao.CustomerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref=""/>
+	</bean>
+	配置user模块
+	<bean id="userAction" class="com.epoint.crm.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<bean id="userService" class="com.epoint.crm.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>-->
+	<!-- dao层必须引入sessionfactory -->
+	<bean id="userDaoImpl" class="com.chzu.football.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> 
+	
+	<bean id="adminDaoImpl" class="com.chzu.football.dao.AdminDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> 
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

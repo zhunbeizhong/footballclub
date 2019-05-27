@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+	<!-- 定义输出目的地：控制台 -->
+	<appender name="Stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{MM-dd HH:mm:ss}:%-5p %c - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="info" />
+			<param name="LevelMax" value="error" />
+		</filter>
+	</appender>
+
+    <!-- 定义输出目的地：日志文件(Info日志) -->
+	<appender name="infoLogFile" class="org.apache.log4j.DailyRollingFileAppender">          
+        <param name="File" value="E:/FootballLoggers/football-info" /><!-- 设置日志输出文件名 -->       
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" /> 
+		<param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">       
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%-5p %c - %m%n" />       
+        </layout> 
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="info" />
+			<param name="LevelMax" value="info" />
+		</filter>      
+    </appender>
+    
+     <!-- 定义输出目的地：日志文件(ERROR日志) -->
+	<appender name="errorLogFile" class="org.apache.log4j.DailyRollingFileAppender">          
+        <param name="File" value="E:/FootballLoggers/football-error" /><!-- 设置日志输出文件名 -->       
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" /> 
+		<param name="encoding" value="UTF-8"/>		
+        <layout class="org.apache.log4j.PatternLayout">       
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%-5p %c - %m%n" />       
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error" />
+			<param name="LevelMax" value="error" />
+		</filter>        
+    </appender>
+    
+    <!-- 定义输出目的地：日志文件 （DEBUG日志）-->
+	<appender name="debugLogFile" class="org.apache.log4j.DailyRollingFileAppender">          
+        <param name="File" value="E:/FootballLoggers/football-debug" /><!-- 设置日志输出文件名 -->       
+        <param name="DatePattern" value="'_'yyyy-MM-dd'.log'" />
+		<param name="encoding" value="UTF-8"/>		
+        <layout class="org.apache.log4j.PatternLayout">       
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%-5p %c - %m%n" />       
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="debug" />
+		</filter>         
+    </appender>  
+    
+    <logger name="org.apache.axis2.description.AxisService">
+		<level value="info" />
+		<appender-ref ref="Stdout" />  
+	</logger>
+	
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="Stdout" />
+		<appender-ref ref="debugLogFile" />
+		<appender-ref ref="infoLogFile" />
+		<appender-ref ref="errorLogFile" />
+	</root>
+	
+</log4j:configuration>

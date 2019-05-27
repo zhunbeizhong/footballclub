@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>球员信息</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="../miniui_java/demo/demo.css" rel="stylesheet" type="text/css" />
+
+    <script src="../miniui_java/scripts/boot.js" type="text/javascript"></script>
+    <script src="../miniui_java/demo/datagrid/js/ColumnsMenu.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <h1 align="center">球员信息</h1>      
+
+    <div style="width:100%;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a class="mini-button" iconCls="icon-add" onclick="add()">增加</a>
+                        <a class="mini-button" iconCls="icon-add" onclick="edit()">编辑</a>
+                        <a class="mini-button" iconCls="icon-remove" onclick="remove()">删除</a>       
+                    </td>
+                    <td style="white-space:nowrap;">
+                        <input id="key" class="mini-textbox" emptyText="请输入球员姓名" style="width:150px;" onenter="onKeyEnter"/>   
+                        <a class="mini-button" onclick="search()">查询</a>
+                    </td>
+                </tr>
+            </table>           
+        </div>
+    </div>
+    <div id="datagrid1" class="mini-datagrid" style="width:100%;height:430px;" allowResize="true"
+        url="/footballClub/admin_findAllPlayerByName.action"  idField="id" multiSelect="true" 
+    >
+        <div property="columns">
+            <div type="indexcolumn">序号</div>        
+            <div type="checkcolumn" ></div>        
+            <div field="name" width="120" headerAlign="center" allowSort="true">球员姓名</div>    
+            <div field="age" width="120" headerAlign="center" allowSort="true" align="center">球员年龄</div> 
+            <div field="birth" width="120" headerAlign="center" allowSort="true" align="center" dateFormat="yyyy-MM-dd">出生日期</div> 
+            <div field="height" width="120" headerAlign="center" allowSort="true" align="center">身高</div>
+            <div field="weight" width="120" headerAlign="center" allowSort="true" align="center">体重</div>
+            <div field="role" width="120" headerAlign="center" allowSort="true">球员职位</div>
+            <div field="entryTime" width="120" headerAlign="center" allowSort="true" align="center" dateFormat="yyyy-MM-dd">入队时间</div>
+            <div field="careerAge" width="120" headerAlign="center" allowSort="true" align="center">职业年龄</div>
+        </div>
+    </div>
+    
+
+    <script type="text/javascript">
+        mini.parse();
+
+        var grid = mini.get("datagrid1");
+        grid.load();
+
+        var menu = new ColumnsMenu(grid);
+
+        function add() {
+
+            mini.open({
+                targetWindow: window,
+
+                url: "addPlayerByAdmin.html",
+                title: "新增球员", width: 660, height: 380,
+                onload: function () {
+                    var iframe = this.getIFrameEl();
+                    var data = { action: "new" };
+                    //iframe.contentWindow.SetData(data);
+                },
+                ondestroy: function (action) {
+
+                    grid.reload();
+                }
+            });
+        }
+
+        function edit() {
+         
+            var row = grid.getSelected();
+            if (row) {
+                mini.open({
+                	//targetWindow: window必须设置，只有设置了并且在要提交的表单上设置了target=_parent返回后的页面在才能在父页面打开，否则单独打开子框架页面
+                	targetWindow: window,               	
+                	url: "editPlayerByAdmin.html",      
+                    title: "编辑球员", width: 660, height: 400,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var data = { action: "edit", id: row.id };
+                        iframe.contentWindow.SetData(data);
+
+                    },
+                    ondestroy: function (action) {
+                        //var iframe = this.getIFrameEl();
+
+                        grid.reload();
+
+                    }
+                });
+                
+            } else {
+                mini.alert("请选中一条记录");
+            }
+            
+        }
+        function remove() {
+            
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                if (confirm("确定删除选中记录？")) {
+                    var ids = [];
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                        var r = rows[i];
+                        ids.push(r.id);
+                    }
+                    var id = ids.join(',');
+                    grid.loading("操作中，请稍后......");
+                    $.ajax({
+                        url: "/footballClub/admin_deletePlayer.action?id=" +id,
+                        success: function (text) {
+                            grid.reload();
+                        },
+                        error: function () {
+                        	mini.alert("删除失败！");
+                        }
+                    });
+                }
+            } else {
+                alert("请选中一条记录");
+            }
+        }
+        function search() {
+            var key = mini.get("key").getValue();
+            //把key当成参数放在requestheader中，可以直接在后台通过request取值
+            grid.load({ key: key });
+           /*  $.ajax({
+                url: "/footballClub/admin_findAllPlayerByName.action?key=" +key,
+                success: function (text) {
+                    grid.reload();
+                },
+                error: function () {
+                	grid.reload();
+                }
+            }); */
+        }
+        function onKeyEnter(e) {
+            search();
+        }
+      
+    </script>
+</body>
+</html>

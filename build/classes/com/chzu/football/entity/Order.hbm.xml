@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	
+	<class name="com.chzu.football.entity.Order" table="orders">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="telPhone" column="telphone"/>
+		<property name="address" column="address"/>
+		<property name="time" column="time"/>	
+		<property name="email" column="email"/>	
+		<property name="sex" column="sex"/>	
+		<property name="remasks" column="remasks"/>	
+		<property name="userId" column="user_id"/>	
+		<property name="goodsId" column="goods_id"/>	
+	</class>
+	
+</hibernate-mapping>    

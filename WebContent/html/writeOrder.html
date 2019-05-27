@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>个人信息</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+   <link href="../miniui_java/demo/demo.css" rel="stylesheet" type="text/css" />
+
+    <script src="../miniui_java/scripts/boot.js" type="text/javascript"></script>
+    <script src="../miniui_java/demo/datagrid/js/ColumnsMenu.js" type="text/javascript"></script>
+    
+
+    <style type="text/css">
+    html, body
+    {        
+        padding:0;
+        margin:0;
+        border:0;
+        height:100%;
+        overflow:hidden;
+    }
+    </style>
+</head>
+<body>     
+    <form id="form1" method="post">
+        <input name="id" class="mini-hidden" />
+        <input name="userId" id="userId" class="mini-hidden" />
+        <input name="goodsId" id="goodsId" class="mini-hidden" />
+        <div style="padding-left:11px;padding-bottom:5px;">
+            <table style="table-layout:fixed;">
+                <tr>
+                    <td style="width:80px;">用户：</td>
+                    <td style="width:150px;">    
+                        <input name="username" id="username" class="mini-textbox" required="true"  readonly/>
+                    </td>
+                    <td style="width:80px;">商品名称：</td>
+                    <td style="width:150px;">    
+                        <input name="goodname" id="goodname" class="mini-textbox" required="true"  readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td >电话号码：</td>
+                    <td >    
+                        <input name="telPhone" id="telphone" class="mini-textbox" required="true" emptyText="请输入手机号"/>
+                    </td>
+                     <td style="width:80px;">性别：</td>
+                	<td >                        
+                    	<select name="sex" class="mini-radiobuttonlist">
+                        	<option value="1">男</option>
+                        	<option value="0">女</option>
+                    	</select>
+                	</td>
+                </tr>
+               
+                <tr>
+                    <td >日期：</td>
+                    <td >    
+                    	<input name="datetime" id="datetime" class="mini-datepicker" value="new Date()" onDrawDate="selectDate" required="true" emptyText="请选择日期"/>
+                    </td>
+                    <td >电子邮箱：</td>
+                    <td >    
+                        <input name="email" class="mini-textbox" vtype="email"/>
+                    </td>
+                </tr>   
+                
+                <tr >
+                    <td >详细地址：</td>
+                    <td >    
+                        <input name="address" class="mini-textbox" required="true" emptyText="请输入详细地址"/>
+                    </td>
+                </tr>   
+                
+                <tr>
+                <td >备注：</td>
+                <td colspan="3">    
+                    <input name="remasks" class="mini-textarea" style="width:386px;" />
+                </td>
+            </tr>   
+            </table>
+        </div>
+        
+        <div style="text-align:center;padding:10px;">               
+            <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>       
+            <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>       
+        </div>        
+    </form>
+    <script type="text/javascript">
+        mini.parse();
+
+
+        var form = new mini.Form("form1");
+
+            function SaveData() {
+            var formData=form.getData();
+            formData = mini.encode(formData);   //序列化成JSON
+            var time = mini.get("datetime").getValue();
+            var d = new Date(time);  
+            var  timeFormat = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+            console.log(formData);
+        	   $.ajax({
+                   url: "/footballClub/user_saveOrder.action",
+                   type: "post",
+                   dataType: "json",
+                   data:{"formData":formData,"datetime":timeFormat},
+                   cache: false,
+                   success: function (text) {
+                	   //console.log(text.result);
+                      if(text.result=="yes"){
+                 		//alert("修改成功");
+                 		//CloseWindow("save");
+                 		//mini.alert("购买成功");
+                 		mini.showMessageBox({title:"购买商品", message:"购买成功！",
+						 buttons: ["ok"],    
+						 
+						 callback:function(){top.location.href="orders.html"}
+			
+						});
+                    	;
+                      }else{
+                    	  alert("购买失败");
+                    	  CloseWindow();
+                      }
+                   },
+                   error: function() { 
+           		    console.log("error") 
+         		  } 
+               }); 
+            
+        }    
+
+        ////////////////////
+        //标准方法接口定义
+        function SetData(data) {
+            if (data.action == "buy") {
+                //跨页面传递的数据对象，克隆后才可以安全使用
+                data = mini.clone(data);
+				//console.log(data.id+"and"+data.goodId);
+				mini.get("userId").setValue(data.id);
+				mini.get("goodsId").setValue(data.goodId);
+                $.ajax({
+                    url: "/footballClub/user_findUser.action?userId=" + data.id,
+                    cache: false,
+                    success: function (text) {
+                        var o = mini.decode(text);
+                        console.log(o);
+                        /* form.setData(o);
+                        form.setChanged(false);
+                        mini.get("pwd").setValue(null);
+                        mini.get("againpwd").setValue(null); */
+                        mini.get("username").setValue(o.userName);
+                        mini.get("telphone").setValue(o.telPhone);
+                    }
+                }); 
+                
+                $.ajax({
+                    url: "/footballClub/user_initGood.action?goodId=" + data.goodId,
+                    cache: false,
+                    success: function (text) {
+                        var o = mini.decode(text);
+                        console.log(o);
+                        /* form.setData(o);
+                        form.setChanged(false);
+                        mini.get("pwd").setValue(null);
+                        mini.get("againpwd").setValue(null); */
+                        mini.get("goodname").setValue(o.name);
+                    }
+                }); 
+            }
+        }
+
+        function GetData() {
+            var o = form.getData();
+            return o;
+        }
+        function CloseWindow(action) {            
+            if (action == "close" && form.isChanged()) {
+                if (confirm("数据被修改了，是否先保存？")) {
+                    return false;
+                }
+            }
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();            
+        }
+        function onOk(e) {      	
+				SaveData();        
+        }
+        function onCancel(e) {
+            CloseWindow("cancel");
+        }
+       //校验手机号
+  /*       function isPhone(){
+   		 var phoneReg = /^1[3-578]\d{9}$/;   
+   		 var phone=document.getElementById("telphone").value;
+   		     if(phoneReg.test(phone)){
+   		    	return true;
+   		     }else{
+   		    	 mini.alert("请输入正确的手机号");
+   		         return false;
+   		     }
+   	} */
+       //选择日期
+       function selectDate(e){
+    	   var date = new Date();
+    	   if(e.date<date){
+    		   e.allowSelect=false;
+    	   }
+       }
+    </script>
+</body>
+</html>

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html>
+<head>    
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="../miniui_java/demo/demo.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script src="../miniui_java/scripts/boot.js" type="text/javascript"></script>
+    <script src="../miniui_java/demo/datagrid/js/ColumnsMenu.js" type="text/javascript"></script>
+	
+    <meta charset="utf-8" />
+    <title></title> 
+    <!-- layui相关资源引入 -->
+    <meta name="renderer" content="webkit">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 	<link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+ 	<script src="../layui/layui.js" charset="utf-8"></script>
+ 	<script src="../js/jquery.min.js"></script>
+  <!-- 设置导航栏条目间距 -->
+  <style type="text/css">
+     #item{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+     }
+     #item5{
+      margin-left: 200px;
+     }
+     #item5 #personal{
+      color:red;
+     }
+
+
+		 #test10
+		 {
+			 height: 800px;
+		 }
+		 #test10 img{
+			  height: 100%;
+				width: 100%;
+		 }
+		 .gcs-footer{
+
+  margin-top: 20px;
+
+  background:#222c3a;
+
+  width: 100%;
+
+  height: 165px;
+
+  text-align: center;
+
+  color: white;
+
+  position: absolute;
+
+}
+
+.gcs-footer .footer-top{
+
+  margin-top: 50px;
+
+}
+
+.gcs-footer a{
+
+  color: #f0f1f1;
+
+  text-decoration: none;
+
+  padding: 0 10px;
+
+  vertical-align:middle;
+
+}
+
+.gcs-footer a:hover{
+
+  color: red;
+
+  text-decoration: underline;
+
+}
+
+.gcs-footer p{
+
+  height: 15px;
+
+  color: #888888;
+
+  margin-top: 30px;
+
+}
+    </style>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../css/base.css" />       
+  <script type="text/javascript" src="../js/common.js"></script>
+  <script type="text/javascript" src="../js/parabola.js"></script>
+</head>
+<body>
+<div class="layui-carousel" id="test10">
+  <div carousel-item="">
+    <div><img src="../images/back1.jpg"></div>
+    <div><img src="../images/back2.jpg"></div>
+    <div><img src="../images/back3.jpg"></div>
+    <div><img src="../images/back4.jpg"></div>
+    <div><img src="../images/back5.jpg"></div>
+<!--     <div><img src="../images/6.png"></div>
+    <div><img src="../images/7.png"></div> -->
+  </div>
+</div>
+
+<ul class="layui-nav layui-bg-green" id="item">
+  <li class="layui-nav-item layui-this" id="item1"><a href="index_User.html">网站首页</a></li>
+  <li class="layui-nav-item" id="item2"><a href="buyGoods.html">球队物品购买</a></li>
+  <li class="layui-nav-item" id="item4"><a href="orders.html">个人订单</a></li>
+  <li class="layui-nav-item" id="item4"><a href="#">社区</a></li>
+  <li class="layui-nav-item" id="item5"><a href="javascript:;" id="personal">你好<span id="username"></span></a>
+    <dl class="layui-nav-child">
+      <dd><a href="javascript:;" onclick="edit()">基本资料</a></dd>
+      <dd><a href="footballClub/user_exitLogin.action">退出登录</a></dd>
+    </dl></li>
+</ul>
+
+
+
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+</fieldset>
+<div class="layui-collapse" lay-filter="test">
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title" >球队信息简介</h2>
+    <div class="layui-colla-content">
+      <p>六安足球俱乐部于1997年4月15日由安徽耀光集团与安徽省足协共同组建成立，曾经是一支善于制造童话和奇迹的球队，1998年3月耀光集团购买俱乐部全部股权，使其成为耀光集团全权拥有的职业足球俱乐部，而且建队仅仅一年，他们就在1997－1998赛季夺得了甲级联赛冠军，是六安内第一家真正意义上的职业队，之后队员的人事关系都转到了集团，算作耀光集团下属企业的职工。2001年12月9日六安足球俱乐部将其一二线队及甲B资格转让给了合肥新世界，仅保留三四线队。2003年7月3日经过重新注资
+成立了新的皖西新世界足球俱乐部。接下来的10年里他们一直保持着雄厚的实力，5次捧起全国联赛冠军，并在2006－2007赛季夺得了亚冠冠军。但在2011年之后球队逐渐开始走下坡路，几年的时间里成绩一直难有起色，不仅再也没有染指冠军，甚至还一度降入了乙级行列。就在人们快要遗忘它的时候，球队又奇迹般地焕发了生机。2017－2018赛季，刚刚重返甲级行列的球队就冲进了三甲之列。当然这些年
+俱乐部在取得众多荣誉的同时也培养了像罗纳尔多，C罗，梅西，贝尔等等众多优秀足球运动员。现球队俱乐部对球迷开放了，球迷可以看球队球员信息还可以购买俱乐部商品了。</p>
+    </div>
+  </div>
+</div>
+
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+</fieldset>
+
+	<div class="newsCenterPanel">
+	<div class="title">
+		<a href="#" target="_self">最新动态</a>
+	</div>
+	<div class="newsCenterPanel_inner">
+
+		<div class="newContentBox odd">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a1">
+				<div class="time">
+					<p class="day" id="day1">2</p>
+					<p class="ym" id="ym1">2019-1</p>
+				</div>
+				<div class="newTitle" id="title1">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId1" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content1">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox even">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a2">
+				<div class="time">
+					<p class="day" id="day2">2</p>
+					<p class="ym" id="ym2">2019-1</p>
+				</div>
+				<div class="newTitle" id="title2">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId2" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content2">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox odd">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a3">
+				<div class="time">
+					<p class="day" id="day3">2</p>
+					<p class="ym" id="ym3">2019-1</p>
+				</div>
+				<div class="newTitle" id="title3">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId3" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content3">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox even">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a4">
+				<div class="time">
+					<p class="day" id="day4">2</p>
+					<p class="ym" id="ym4">2019-1</p>
+				</div>
+				<div class="newTitle" id="title4">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId4" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content4">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox odd">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a5">
+				<div class="time">
+					<p class="day" id="day5">2</p>
+					<p class="ym" id="ym5">2019-1</p>
+				</div>
+				<div class="newTitle" id="title5">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId5" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content5">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox even">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a6">
+				<div class="time">
+					<p class="day" id="day6">2</p>
+					<p class="ym" id="ym6">2019-1</p>
+				</div>
+				<div class="newTitle" id="title6">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId6" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content6">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox odd">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a7">
+				<div class="time">
+					<p class="day" id="day7">2</p>
+					<p class="ym" id="ym7">2019-1</p>
+				</div>
+				<div class="newTitle" id="title7">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId7" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content7">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+		<div class="newContentBox even">
+			<a hidefocus="true" href="javascript:;" onclick="join(this)" id="a8">
+				<div class="time">
+					<p class="day" id="day8">2</p>
+					<p class="ym" id="ym8">2019-1</p>
+				</div>
+				<div class="newTitle" id="title8">[精]科技网新产品“科技商城”正式上线</div>
+				<div id="forumId8" style="display:none"></div>
+				<div class="newTitleIcon"></div>
+				<div class="border"></div>
+				<div class="newContent" id="content8">1月2日，科技网新产品“科技商城”正式上线，商家企业将能通过新产品科技商城享受更优质的在线商城建设服务，轻松打造属于自己的在线商城
+				</div>
+			</a>
+
+		</div>
+
+	</div>
+</div>
+
+    <div id="flyItem" class="fly_item"><!-- <img src="images/item-pic.jpg" width="40" height="40"> --></div>
+    <div id="demo4" style="text-align: center;"></div>
+
+
+<script>
+var total=0;
+$(function(){
+	$.ajax({ 
+		  type: "post", 
+		  async: false,
+		  //需要排除拦截
+		  url: "/footballClub/user_findTotalForum.action", 
+		  dataType: "json",
+		  success: function(data) { 
+		  	//var currentUser=JSON.parse(data);
+		  	//从后台传来的data就是json对象不需要转
+		  	console.log(total);
+		  	total=data.total;
+		  	console.log(total);
+		  }, 
+		  error: function() { 
+		    console.log("error") 
+		  } 
+		});
+});
+mini.parse();
+layui.use(['carousel', 'form','element', 'layer','laypage'], function(){
+  var carousel = layui.carousel
+  ,form = layui.form;
+  //图片轮播
+  carousel.render({
+    elem: '#test10'
+    ,width: '100%'
+    ,height: '440px'
+    ,interval: 5000
+  });
+  
+  //事件
+  carousel.on('change(test4)', function(res){
+    console.log(res)
+  });
+  
+  var $ = layui.$, active = {
+    set: function(othis){
+      var THIS = 'layui-bg-normal'
+      ,key = othis.data('key')
+      ,options = {};
+      
+      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+      options[key] = othis.data('value');
+      ins3.reload(options);
+    }
+  };
+  
+  //监听开关
+  form.on('switch(autoplay)', function(){
+    ins3.reload({
+      autoplay: this.checked
+    });
+  });
+  
+  $('.demoSet').on('keyup', function(){
+    var value = this.value
+    ,options = {};
+    if(!/^\d+$/.test(value)) return;
+    
+    options[this.name] = value;
+    ins3.reload(options);
+  });
+  
+  //其它示例
+  $('.demoTest .layui-btn').on('click', function(){
+    var othis = $(this), type = othis.data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+
+
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+  
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+
+
+
+  var layer = layui.layer;
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    /*layer.msg('展开状态：'+ data.show);*/
+  });
+
+//分页
+var laypage = layui.laypage
+  laypage.render({
+    elem: 'demo4'
+    ,count: total
+    ,limit:8
+    ,first: false
+    ,last: false
+    ,jump: function(obj){
+      //一定要注意请求的方法是否排除被拦截了
+       $.ajax({ 
+		  type: "post", 
+		  url: "http://localhost:8080/footballClub/user_findForum.action", 
+		  dataType: "json",
+		  data:{"currentIndexOf":obj.curr},
+		  success: function(result) { 
+		  	console.log(result); 
+			if(result.length==8){
+				var d = new Date(result[0].time);
+			  	document.getElementById("day1").innerHTML=d.getDate();
+			  	var d1 = new Date(result[1].time);
+			  	document.getElementById("day2").innerHTML=d1.getDate();
+			  	var d2 = new Date(result[2].time);
+			  	document.getElementById("day3").innerHTML=d2.getDate();
+			  	var d3 = new Date(result[3].time);
+			  	document.getElementById("day4").innerHTML=d3.getDate();
+			  	var d4 = new Date(result[4].time);
+			  	document.getElementById("day5").innerHTML=d4.getDate();
+			  	var d5 = new Date(result[5].time);
+			  	document.getElementById("day6").innerHTML=d5.getDate();
+			  	var d6 = new Date(result[6].time);
+			  	document.getElementById("day7").innerHTML=d6.getDate();
+			  	var d7 = new Date(result[7].time);
+			  	document.getElementById("day8").innerHTML=d7.getDate(); 
+			  	
+			  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+			  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+			  		  	
+			  	document.getElementById("title1").innerHTML=result[0].title;
+			  	document.getElementById("title2").innerHTML=result[1].title;
+			  	document.getElementById("title3").innerHTML=result[2].title;
+			  	document.getElementById("title4").innerHTML=result[3].title;
+			  	document.getElementById("title5").innerHTML=result[4].title;
+			  	document.getElementById("title6").innerHTML=result[5].title;
+			  	document.getElementById("title7").innerHTML=result[6].title;
+			  	document.getElementById("title8").innerHTML=result[7].title;
+			  			  	
+			  	document.getElementById("forumId1").innerHTML=result[0].id;
+			  	document.getElementById("forumId2").innerHTML=result[1].id;
+			  	document.getElementById("forumId3").innerHTML=result[2].id;
+			  	document.getElementById("forumId4").innerHTML=result[3].id;
+			  	document.getElementById("forumId5").innerHTML=result[4].id;
+			  	document.getElementById("forumId6").innerHTML=result[5].id;
+			  	document.getElementById("forumId7").innerHTML=result[6].id;
+			  	document.getElementById("forumId8").innerHTML=result[7].id;
+			  
+			  	document.getElementById("content1").innerHTML=result[0].content;
+			  	document.getElementById("content2").innerHTML=result[1].content;
+			  	document.getElementById("content3").innerHTML=result[2].content;
+			  	document.getElementById("content4").innerHTML=result[3].content;
+			  	document.getElementById("content5").innerHTML=result[4].content;
+			  	document.getElementById("content6").innerHTML=result[5].content;
+			  	document.getElementById("content7").innerHTML=result[6].content;
+			  	document.getElementById("content8").innerHTML=result[7].content;
+			  	}else if(result.length==7){
+			  		var d = new Date(result[0].time);
+				  	document.getElementById("day1").innerHTML=d.getDate();
+				  	var d1 = new Date(result[1].time);
+				  	document.getElementById("day2").innerHTML=d1.getDate();
+				  	var d2 = new Date(result[2].time);
+				  	document.getElementById("day3").innerHTML=d2.getDate();
+				  	var d3 = new Date(result[3].time);
+				  	document.getElementById("day4").innerHTML=d3.getDate();
+				  	var d4 = new Date(result[4].time);
+				  	document.getElementById("day5").innerHTML=d4.getDate();
+				  	var d5 = new Date(result[5].time);
+				  	document.getElementById("day6").innerHTML=d5.getDate();
+				  	var d6 = new Date(result[6].time);
+				  	document.getElementById("day7").innerHTML=d6.getDate();
+				  	var d7 = new Date();
+				  	document.getElementById("day8").innerHTML=d7.getDate();
+				  	
+				  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+				  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+				  		  	
+				  	document.getElementById("title1").innerHTML=result[0].title;
+				  	document.getElementById("title2").innerHTML=result[1].title;
+				  	document.getElementById("title3").innerHTML=result[2].title;
+				  	document.getElementById("title4").innerHTML=result[3].title;
+				  	document.getElementById("title5").innerHTML=result[4].title;
+				  	document.getElementById("title6").innerHTML=result[5].title;
+				  	document.getElementById("title7").innerHTML=result[6].title;
+				  	document.getElementById("title8").innerHTML="暂无";
+				  			  	
+				  	document.getElementById("forumId1").innerHTML=result[0].id;
+				  	document.getElementById("forumId2").innerHTML=result[1].id;
+				  	document.getElementById("forumId3").innerHTML=result[2].id;
+				  	document.getElementById("forumId4").innerHTML=result[3].id;
+				  	document.getElementById("forumId5").innerHTML=result[4].id;
+				  	document.getElementById("forumId6").innerHTML=result[5].id;
+				  	document.getElementById("forumId7").innerHTML=result[6].id;
+				  	document.getElementById("forumId8").innerHTML=0;
+				  
+				  	document.getElementById("content1").innerHTML=result[0].content;
+				  	document.getElementById("content2").innerHTML=result[1].content;
+				  	document.getElementById("content3").innerHTML=result[2].content;
+				  	document.getElementById("content4").innerHTML=result[3].content;
+				  	document.getElementById("content5").innerHTML=result[4].content;
+				  	document.getElementById("content6").innerHTML=result[5].content;
+				  	document.getElementById("content7").innerHTML=result[6].content;
+				  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+				  	}else if(result.length==6){
+				  		var d = new Date(result[0].time);
+					  	document.getElementById("day1").innerHTML=d.getDate();
+					  	var d1 = new Date(result[1].time);
+					  	document.getElementById("day2").innerHTML=d1.getDate();
+					  	var d2 = new Date(result[2].time);
+					  	document.getElementById("day3").innerHTML=d2.getDate();
+					  	var d3 = new Date(result[3].time);
+					  	document.getElementById("day4").innerHTML=d3.getDate();
+					  	var d4 = new Date(result[4].time);
+					  	document.getElementById("day5").innerHTML=d4.getDate();
+					  	var d5 = new Date(result[5].time);
+					  	document.getElementById("day6").innerHTML=d5.getDate();
+					  	var d6 = new Date();
+					  	document.getElementById("day7").innerHTML=d6.getDate();
+					  	var d7 = new Date();
+					  	document.getElementById("day8").innerHTML=d7.getDate();
+					  	
+					  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+					  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+					  		  	
+					  	document.getElementById("title1").innerHTML=result[0].title;
+					  	document.getElementById("title2").innerHTML=result[1].title;
+					  	document.getElementById("title3").innerHTML=result[2].title;
+					  	document.getElementById("title4").innerHTML=result[3].title;
+					  	document.getElementById("title5").innerHTML=result[4].title;
+					  	document.getElementById("title6").innerHTML=result[5].title;
+					  	document.getElementById("title7").innerHTML="暂无";
+					  	document.getElementById("title8").innerHTML="暂无";
+					  			  	
+					  	document.getElementById("forumId1").innerHTML=result[0].id;
+					  	document.getElementById("forumId2").innerHTML=result[1].id;
+					  	document.getElementById("forumId3").innerHTML=result[2].id;
+					  	document.getElementById("forumId4").innerHTML=result[3].id;
+					  	document.getElementById("forumId5").innerHTML=result[4].id;
+					  	document.getElementById("forumId6").innerHTML=result[5].id;
+					  	document.getElementById("forumId7").innerHTML=0;
+					  	document.getElementById("forumId8").innerHTML=0;
+					  
+					  	document.getElementById("content1").innerHTML=result[0].content;
+					  	document.getElementById("content2").innerHTML=result[1].content;
+					  	document.getElementById("content3").innerHTML=result[2].content;
+					  	document.getElementById("content4").innerHTML=result[3].content;
+					  	document.getElementById("content5").innerHTML=result[4].content;
+					  	document.getElementById("content6").innerHTML=result[5].content;
+					  	document.getElementById("content7").innerHTML="抱歉，暂无更多帖子了！！！";
+					  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+					  	}else if(result.length==5){
+							var d = new Date(result[0].time);
+						  	document.getElementById("day1").innerHTML=d.getDate();
+						  	var d1 = new Date(result[1].time);
+						  	document.getElementById("day2").innerHTML=d1.getDate();
+						  	var d2 = new Date(result[2].time);
+						  	document.getElementById("day3").innerHTML=d2.getDate();
+						  	var d3 = new Date(result[3].time);
+						  	document.getElementById("day4").innerHTML=d3.getDate();
+						  	var d4 = new Date(result[4].time);
+						  	document.getElementById("day5").innerHTML=d4.getDate();
+						  	var d5 = new Date();
+						  	document.getElementById("day6").innerHTML=d5.getDate();
+						  	var d6 = new Date();
+						  	document.getElementById("day7").innerHTML=d6.getDate();
+						  	var d7 = new Date();
+						  	document.getElementById("day8").innerHTML=d7.getDate();
+						  	
+						  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+						  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+						  		  	
+						  	document.getElementById("title1").innerHTML=result[0].title;
+						  	document.getElementById("title2").innerHTML=result[1].title;
+						  	document.getElementById("title3").innerHTML=result[2].title;
+						  	document.getElementById("title4").innerHTML=result[3].title;
+						  	document.getElementById("title5").innerHTML=result[4].title;
+						  	document.getElementById("title6").innerHTML="暂无";
+						  	document.getElementById("title7").innerHTML="暂无";
+						  	document.getElementById("title8").innerHTML="暂无";
+						  			  	
+						  	document.getElementById("forumId1").innerHTML=result[0].id;
+						  	document.getElementById("forumId2").innerHTML=result[1].id;
+						  	document.getElementById("forumId3").innerHTML=result[2].id;
+						  	document.getElementById("forumId4").innerHTML=result[3].id;
+						  	document.getElementById("forumId5").innerHTML=result[4].id;
+						  	document.getElementById("forumId6").innerHTML=0;
+						  	document.getElementById("forumId7").innerHTML=0;
+						  	document.getElementById("forumId8").innerHTML=0;
+						  
+						  	document.getElementById("content1").innerHTML=result[0].content;
+						  	document.getElementById("content2").innerHTML=result[1].content;
+						  	document.getElementById("content3").innerHTML=result[2].content;
+						  	document.getElementById("content4").innerHTML=result[3].content;
+						  	document.getElementById("content5").innerHTML=result[4].content;
+						  	document.getElementById("content6").innerHTML="抱歉，暂无更多帖子了！！！";
+						  	document.getElementById("content7").innerHTML="抱歉，暂无更多帖子了！！！";
+						  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+						  	}else if(result.length==4){
+						  		var d = new Date(result[0].time);
+							  	document.getElementById("day1").innerHTML=d.getDate();
+							  	var d1 = new Date(result[1].time);
+							  	document.getElementById("day2").innerHTML=d1.getDate();
+							  	var d2 = new Date(result[2].time);
+							  	document.getElementById("day3").innerHTML=d2.getDate();
+							  	var d3 = new Date(result[3].time);
+							  	document.getElementById("day4").innerHTML=d3.getDate();
+							  	var d4 = new Date();
+							  	document.getElementById("day5").innerHTML=d4.getDate();
+							  	var d5 = new Date();
+							  	document.getElementById("day6").innerHTML=d5.getDate();
+							  	var d6 = new Date();
+							  	document.getElementById("day7").innerHTML=d6.getDate();
+							  	var d7 = new Date();
+							  	document.getElementById("day8").innerHTML=d7.getDate();
+							  	
+							  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+							  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+							  		  	
+							  	document.getElementById("title1").innerHTML=result[0].title;
+							  	document.getElementById("title2").innerHTML=result[1].title;
+							  	document.getElementById("title3").innerHTML=result[2].title;
+							  	document.getElementById("title4").innerHTML=result[3].title;
+							  	document.getElementById("title5").innerHTML="暂无";
+							  	document.getElementById("title6").innerHTML="暂无";
+							  	document.getElementById("title7").innerHTML="暂无";
+							  	document.getElementById("title8").innerHTML="暂无";
+							  			  	
+							  	document.getElementById("forumId1").innerHTML=result[0].id;
+							  	document.getElementById("forumId2").innerHTML=result[1].id;
+							  	document.getElementById("forumId3").innerHTML=result[2].id;
+							  	document.getElementById("forumId4").innerHTML=result[3].id;
+							  	document.getElementById("forumId5").innerHTML=0;
+							  	document.getElementById("forumId6").innerHTML=0;
+							  	document.getElementById("forumId7").innerHTML=0;
+							  	document.getElementById("forumId8").innerHTML=0;
+							  
+							  	document.getElementById("content1").innerHTML=result[0].content;
+							  	document.getElementById("content2").innerHTML=result[1].content;
+							  	document.getElementById("content3").innerHTML=result[2].content;
+							  	document.getElementById("content4").innerHTML=result[3].content;
+							  	document.getElementById("content5").innerHTML="抱歉，暂无更多帖子了！！！";
+							  	document.getElementById("content6").innerHTML="抱歉，暂无更多帖子了！！！";
+							  	document.getElementById("content7").innerHTML="抱歉，暂无更多帖子了！！！";
+							  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+							  	}else if(result.length==3){
+							  		var d = new Date(result[0].time);
+								  	document.getElementById("day1").innerHTML=d.getDate();
+								  	var d1 = new Date(result[1].time);
+								  	document.getElementById("day2").innerHTML=d1.getDate();
+								  	var d2 = new Date(result[2].time);
+								  	document.getElementById("day3").innerHTML=d2.getDate();
+								  	var d3 = new Date();
+								  	document.getElementById("day4").innerHTML=d3.getDate();
+								  	var d4 = new Date();
+								  	document.getElementById("day5").innerHTML=d4.getDate();
+								  	var d5 = new Date();
+								  	document.getElementById("day6").innerHTML=d5.getDate();
+								  	var d6 = new Date();
+								  	document.getElementById("day7").innerHTML=d6.getDate();
+								  	var d7 = new Date();
+								  	document.getElementById("day8").innerHTML=d7.getDate();
+								  	
+								  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+								  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+								  		  	
+								  	document.getElementById("title1").innerHTML=result[0].title;
+								  	document.getElementById("title2").innerHTML=result[1].title;
+								  	document.getElementById("title3").innerHTML=result[2].title;
+								  	document.getElementById("title4").innerHTML="暂无";
+								  	document.getElementById("title5").innerHTML="暂无";
+								  	document.getElementById("title6").innerHTML="暂无";
+								  	document.getElementById("title7").innerHTML="暂无";
+								  	document.getElementById("title8").innerHTML="暂无";
+								  			  	
+								  	document.getElementById("forumId1").innerHTML=result[0].id;
+								  	document.getElementById("forumId2").innerHTML=result[1].id;
+								  	document.getElementById("forumId3").innerHTML=result[2].id;
+								  	document.getElementById("forumId4").innerHTML=0;
+								  	document.getElementById("forumId5").innerHTML=0;
+								  	document.getElementById("forumId6").innerHTML=0;
+								  	document.getElementById("forumId7").innerHTML=0;
+								  	document.getElementById("forumId8").innerHTML=0;
+								  
+								  	document.getElementById("content1").innerHTML=result[0].content;
+								  	document.getElementById("content2").innerHTML=result[1].content;
+								  	document.getElementById("content3").innerHTML=result[2].content;
+								  	document.getElementById("content4").innerHTML="抱歉，暂无更多帖子了！！！";
+								  	document.getElementById("content5").innerHTML="抱歉，暂无更多帖子了！！！";
+								  	document.getElementById("content6").innerHTML="抱歉，暂无更多帖子了！！！";
+								  	document.getElementById("content7").innerHTML="抱歉，暂无更多帖子了！！！";
+								  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+								  	}else if(result.length==2){
+								  		var d = new Date(result[0].time);
+									  	document.getElementById("day1").innerHTML=d.getDate();
+									  	var d1 = new Date(result[1].time);
+									  	document.getElementById("day2").innerHTML=d1.getDate();
+									  	var d2 = new Date();
+									  	document.getElementById("day3").innerHTML=d2.getDate();
+									  	var d3 = new Date();
+									  	document.getElementById("day4").innerHTML=d3.getDate();
+									  	var d4 = new Date();
+									  	document.getElementById("day5").innerHTML=d4.getDate();
+									  	var d5 = new Date();
+									  	document.getElementById("day6").innerHTML=d5.getDate();
+									  	var d6 = new Date();
+									  	document.getElementById("day7").innerHTML=d6.getDate();
+									  	var d7 = new Date();
+									  	document.getElementById("day8").innerHTML=d7.getDate();
+									  	
+									  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+									  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+									  		  	
+									  	document.getElementById("title1").innerHTML=result[0].title;
+									  	document.getElementById("title2").innerHTML=result[1].title;
+									  	document.getElementById("title3").innerHTML="暂无";
+									  	document.getElementById("title4").innerHTML="暂无";
+									  	document.getElementById("title5").innerHTML="暂无";
+									  	document.getElementById("title6").innerHTML="暂无";
+									  	document.getElementById("title7").innerHTML="暂无";
+									  	document.getElementById("title8").innerHTML="暂无";
+									  			  	
+									  	document.getElementById("forumId1").innerHTML=result[0].id;
+									  	document.getElementById("forumId2").innerHTML=result[1].id;
+									  	document.getElementById("forumId3").innerHTML=0;
+									  	document.getElementById("forumId4").innerHTML=0;
+									  	document.getElementById("forumId5").innerHTML=0;
+									  	document.getElementById("forumId6").innerHTML=0;
+									  	document.getElementById("forumId7").innerHTML=0;
+									  	document.getElementById("forumId8").innerHTML=0;
+									  
+									  	document.getElementById("content1").innerHTML=result[0].content;
+									  	document.getElementById("content2").innerHTML=result[1].content;
+									  	document.getElementById("content3").innerHTML="抱歉，暂无更多帖子了！！！";
+									  	document.getElementById("content4").innerHTML="抱歉，暂无更多帖子了！！！";
+									  	document.getElementById("content5").innerHTML="抱歉，暂无更多帖子了！！！";
+									  	document.getElementById("content6").innerHTML="抱歉，暂无更多帖子了！！！";
+									  	document.getElementById("content7").innerHTML="抱歉，暂无更多帖子了！！！";
+									  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+									  	}else{
+									 		var d = new Date(result[0].time);
+										  	document.getElementById("day1").innerHTML=d.getDate();
+										  	var d1 = new Date();
+										  	document.getElementById("day2").innerHTML=d1.getDate();
+										  	var d2 = new Date();
+										  	document.getElementById("day3").innerHTML=d2.getDate();
+										  	var d3 = new Date();
+										  	document.getElementById("day4").innerHTML=d3.getDate();
+										  	var d4 = new Date();
+										  	document.getElementById("day5").innerHTML=d4.getDate();
+										  	var d5 = new Date();
+										  	document.getElementById("day6").innerHTML=d5.getDate();
+										  	var d6 = new Date();
+										  	document.getElementById("day7").innerHTML=d6.getDate();
+										  	var d7 = new Date();
+										  	document.getElementById("day8").innerHTML=d7.getDate();
+										  	
+										  	document.getElementById("ym1").innerHTML=d.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym2").innerHTML=d1.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym3").innerHTML=d2.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym4").innerHTML=d3.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym5").innerHTML=d4.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym6").innerHTML=d5.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym7").innerHTML=d6.getFullYear() + '-' + (d.getMonth() + 1);
+										  	document.getElementById("ym8").innerHTML=d7.getFullYear() + '-' + (d.getMonth() + 1);
+										  		  	
+										  	document.getElementById("title1").innerHTML=result[0].title;
+										  	document.getElementById("title2").innerHTML="暂无";
+										  	document.getElementById("title3").innerHTML="暂无";
+										  	document.getElementById("title4").innerHTML="暂无";
+										  	document.getElementById("title5").innerHTML="暂无";
+										  	document.getElementById("title6").innerHTML="暂无";
+										  	document.getElementById("title7").innerHTML="暂无";
+										  	document.getElementById("title8").innerHTML="暂无";
+										  			  	
+										  	document.getElementById("forumId1").innerHTML=result[0].id;
+										  	document.getElementById("forumId2").innerHTML=0;
+										  	document.getElementById("forumId3").innerHTML=0;
+										  	document.getElementById("forumId4").innerHTML=0;
+										  	document.getElementById("forumId5").innerHTML=0;
+										  	document.getElementById("forumId6").innerHTML=0;
+										  	document.getElementById("forumId7").innerHTML=0;
+										  	document.getElementById("forumId8").innerHTML=0;
+										  
+										  	document.getElementById("content1").innerHTML=result[0].content;
+										  	document.getElementById("content2").innerHTML="抱歉，暂无更多帖子了！！！";
+										  	document.getElementById("content3").innerHTML="抱歉，暂无更多帖子了！！！";
+										  	document.getElementById("content4").innerHTML="抱歉，暂无更多帖子了！！！";
+										  	document.getElementById("content5").innerHTML="抱歉，暂无更多帖子了！！！";
+										  	document.getElementById("content6").innerHTML="抱歉，暂无更多帖子了！！！";
+										  	document.getElementById("content7").innerHTML="抱歉，暂无更多帖子了！！！";
+										  	document.getElementById("content8").innerHTML="抱歉，暂无更多帖子了！！！";
+				  	}
+		  }, 
+		  error: function() { 
+		    console.log("error") 
+		  }  
+		});  
+    }
+  });
+   //调用分页
+  laypage.render({
+    elem: 'demo20'
+    /* ,count: data.length */
+    ,count:total
+    ,limit:8
+    
+    /* ,layout: ['count'] */
+    ,jump: function(obj){
+      //console.log(obj.curr);
+     var currentIndex=obj.curr;
+     /*  //模拟渲染
+      document.getElementById('biuuu_city_list').innerHTML = function(){
+        var arr = []
+        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+        layui.each(thisData, function(index, item){
+          arr.push('<li>'+ item +'</li>');
+        });
+        return arr.join('');
+      }(); */
+      //console.log(currentIndex);
+    }
+  });
+});
+
+//页面刚加载就去显示当前登录的用户名
+var currentId=0;
+$(function(){
+	$.ajax({ 
+		  type: "post", 
+		  url: "/footballClub/user_findCurrentUser.action", 
+		  dataType: "json",
+		  success: function(data) { 
+		  	//var currentUser=JSON.parse(data);
+		  	//从后台传来的data就是json对象不需要转
+		  	console.log(data);
+		  	currentId=data.id;
+		  	document.getElementById("username").innerHTML=data.userName;
+		  }, 
+		  error: function() { 
+		    console.log("error") 
+		  } 
+		});
+	
+
+	  /* console.log(currentIndex);
+ 	$.ajax({ 
+		  type: "post", 
+		  url: "/footballClub/user_findPlayers.action", 
+		  data:{"currentIndex":currentIndex},
+		  dataType: "json",
+		  success: function(result) { 
+ 		  /* 	console.log(data);
+		  	currentId=data.id;
+		  	document.getElementById("username").innerHTML=data.userName; 
+		  	console.log(result); 
+		  }, 
+		  error: function() { 
+		    console.log("error") 
+		  }  
+		});  */
+});
+
+//定义全局变量存储论坛帖子的id值
+var forumId=0;
+//购买物品
+ function join(elem) {
+	//console.log($(elem).attr("id"));
+	//获取当前物品的id传到填写订单页面
+	if($(elem).attr("id")=="a1"){
+		forumId=document.getElementById("forumId1").innerHTML;
+	}else if($(elem).attr("id")=="a2"){
+		forumId=document.getElementById("forumId2").innerHTML;
+	}else if($(elem).attr("id")=="a3"){
+		forumId=document.getElementById("forumId3").innerHTML;
+	}else if($(elem).attr("id")=="a4"){
+		forumId=document.getElementById("forumId4").innerHTML;
+	}else if($(elem).attr("id")=="a5"){
+		forumId=document.getElementById("forumId5").innerHTML;
+	}else if($(elem).attr("id")=="a6"){
+		forumId=document.getElementById("forumId6").innerHTML;
+	}else if($(elem).attr("id")=="a7"){
+		forumId=document.getElementById("forumId7").innerHTML;
+	}else{
+		forumId=document.getElementById("forumId8").innerHTML;
+	}
+	
+	
+	if(currentId==0){
+		mini.showMessageBox({title:"未登录", message:"您暂无权限访问该帖子，请先登录!",
+			 buttons: ["ok"],    
+			 iconCls: "mini-messagebox-question",
+			 callback:function(){window.location.href="login.html"}
+			
+		});
+		
+	}else{
+		if(forumId==0){
+			mini.showMessageBox({title:"无该帖子", message:"该帖子不存在，请重新选择！",
+				 buttons: ["ok"],    
+				 iconCls: "mini-messagebox-question",
+				 callback:function(){window.location.reload();}
+				
+			});
+			
+		}else{
+		window.location.href="postForum.html?forumId="+forumId;
+		}
+	}
+   
+} 
+
+ function edit() {
+	if(currentId==0){
+		mini.showMessageBox({title:"未登录", message:"请先登录!",
+			 buttons: ["ok"],    
+			 iconCls: "mini-messagebox-question",
+			 callback:function(){window.location.href="login.html"}
+			
+		});
+		
+	}else{
+        mini.open({
+            url: "editUser.html",
+            title: "编辑个人信息", width: 600, height: 290,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = { action: "edit", id:currentId };
+                iframe.contentWindow.SetData(data);
+
+            },
+            ondestroy: function (action) {
+                //var iframe = this.getIFrameEl();
+
+               window.location.reload();
+
+            }
+        }); 
+	}
+   
+} 
+</script>
+<div class="gcs-footer">
+
+  <div class="footer-top">
+
+    <a href="#">百度网</a> |
+
+    <a href="#">新浪网</a> |
+
+    <a href="#">腾迅网</a> |
+
+    <a href="#">网易</a> |
+
+    <a href="#">谷歌</a> |
+
+    <a href="#">阿里巴巴</a> |
+
+ </div>
+
+  <p>
+    <a href="#">
+    ©football.luan.com
+    </a>
+  </p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+	<package name="football" namespace="/" extends="struts-default">
+		<!-- 配置拦截器，且要引入到指定到action 中才表示针对这个action中方法其拦截作用 -->
+		 <interceptors>
+			<interceptor name="userInterceptor" class="com.chzu.football.interceptor.UserInterceptor"/>
+			<interceptor name="adminInterceptor" class="com.chzu.football.interceptor.AdminInterceptor"/>
+		</interceptors> 
+		
+		<!--配置全局的结果，表示在整个包遇到指定的字符串都会返回到某页面，为了是适应拦截器返回的结果能找到页面，
+		因为拦截器是单独的包不属于任何一个action，所以在action中配置的结果不适用于拦截器的结果 -->
+		 <global-results>
+			<result name="login" type="redirect">/html/login.html</result>
+		</global-results> 
+		
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="login" type="redirect">/html/login.html</result>	
+			<result name="index" type="redirect">/html/index_User.html</result>
+			<result name="index_admin" type="redirect">/html/index_Admin.html</result>
+			 <interceptor-ref name="userInterceptor">
+				<!-- 登录方法不拦截，否则永远登录不了 -->
+				<param name="excludeMethods">login,regist,checkUser,findPlayers,findTotal,findGoods,findTotalGoods,findForum,findTotalForum</param>
+				<!-- <param name="excludeMethods">regist</param>
+				<param name="excludeMethods">checkUser</param>
+				<param name="excludeMethods">findPlayers</param>
+				<param name="excludeMethods">findTotal</param>  -->			
+			</interceptor-ref>
+			<!-- 引入默认拦截器栈 -->
+			<interceptor-ref name="defaultStack"/> 
+		</action>
+		
+		<action name="admin_*" class="adminAction" method="{1}">
+			 <result name="managerPlayer" type="redirect">/html/managerPlayer.html</result>	
+			 <result name="managerGoods" type="redirect">/html/managerGoods.html</result>	
+			 <result name="managerOrder" type="redirect">/html/managerOrder.html</result>	
+			<result name="managerCommunity" type="redirect">/html/managerCommunity.html</result>
+			 
+			 <interceptor-ref name="adminInterceptor">
+			 	<param name="excludeMethods">findCurrentAdmin</param>
+			 </interceptor-ref>
+			<!--引入默认拦截器栈-->
+			<interceptor-ref name="defaultStack"/>	 
+		</action>
+	</package>
+    
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+

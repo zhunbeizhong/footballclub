@@ -1,0 +1,24 @@
+﻿[
+	{ "id": "1", iconCls: "fa fa-send-o", text: "用户管理", children: [
+        { "id": "1_1", iconCls: "fa fa-desktop", text: "用户信息管理", url: "managerUser.html" }      
+	    ]
+	},
+    { "id": "xtgl", iconCls: "fa fa-desktop", text: "球员管理", children: [
+        { "id": "xzgl", iconCls: "fa fa-leaf", text: "球员信息管理", url: "managerPlayer.html" },
+        { "id": "fbbdgn", iconCls: "fa fa-list-alt", text: "球员信息统计", url: "countPlayer.html" }
+    ]
+    },
+{ "id": "dwzz", iconCls: "fa fa-coffee",  text: "商品管理", children: [
+         { "id": "gsgl", iconCls: "fa fa-sitemap", text: "商品信息管理", url: "managerGoods.html" },
+         { "id": "bmgl", iconCls: "fa fa-th-list", text: "商品信息统计", url: "countGoods.html" }
+    ]
+},
+{ "id": "bdzx", iconCls: "fa fa-table", text: "订单管理", children: [
+        { "id": "zdybd", iconCls: "fa fa-puzzle-piece", text: "订单信息管理", url: "managerOrder.html" }
+    ]
+},
+{ "id": "ggxx", iconCls: "fa fa-globe", text: "论坛管理", children: [
+        { "id": "xwzx", iconCls: "fa-feed", text: "论坛信息管理", url: "managerCommunity.html" }
+    ]
+}
+]

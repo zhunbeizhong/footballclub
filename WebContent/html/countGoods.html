@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品信息统计</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="../miniui_java/demo/demo.css" rel="stylesheet" type="text/css"/> 
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/2-0-4/esl.js"></script>
+    <script src="../miniui_java/scripts/boot.js" type="text/javascript"></script>
+    <script src="../miniui_java/demo/datagrid/js/ColumnsMenu.js" type="text/javascript"></script>
+
+</head>
+<body>
+   <div id="main1" style="height:500px"></div>
+	<script type="text/javascript">
+
+	var frock = null;//球衣
+	var pants = null;//球裤
+	var shots = null;//球鞋
+		$(function() {
+		$.ajax({
+                url: "/footballClub/admin_countGoods.action",
+                type: "post",
+                dataType: "json",
+                async : false,
+                cache: false,
+                success: function (result) {
+                	var o = mini.decode(result);
+                	//console.log(o+"aaa"+result);
+                	//console.log(typeof result +"type"+ typeof o);返回的是对象object
+                	//console.log(result[0]+"第一个对象");
+                	frock = result[0];
+                	pants = result[1];
+                	shots = result[2];
+                	console.log(frock+"aa"+pants+"bb"+shots);
+                },
+                error: function() { 
+        		    console.log("error"); 
+        		    mini.showMessageBox({title:"商品信息统计", message:"信息查询失败，请重试!",
+              			 buttons: ["ok"],  
+              			 width:"100",
+              			 height:"200",
+              			 callback:function(){CloseWindow("save");}
+              			
+              		});
+      		  } 
+            });                    
+		
+		// 路径配置
+		require.config({
+			paths : {
+				'echarts' : 'http://echarts.baidu.com/build/echarts',
+				'echarts/chart/bar' : 'http://echarts.baidu.com/build/echarts',
+				'echarts/chart/line': 'http://echarts.baidu.com/build/echarts'
+			}
+		});
+ 
+		// 使用
+		require([ 'echarts', 'echarts/chart/bar','echarts/chart/line'], // 使用柱状图就加载bar模块，按需加载
+		 function(ec) {
+			// 基于准备好的dom，初始化echarts图表
+			var myChart = ec.init(document.getElementById('main1'));
+ 
+			var option = {
+				title : {
+					text : '商品信息统计',
+					subtext : '数量'
+				},
+				tooltip : {
+					trigger : 'axis'
+				},
+				legend : {
+					data : [ '球衣', '球裤', '球鞋' ]
+				},
+				toolbox : {
+					show : true,
+					feature : {
+						mark : {
+							show : true
+						},
+						dataView : {
+							show : true,
+							readOnly : false
+						},
+						magicType : {
+							show : true,
+							type : [ 'line', 'bar' ]
+						},
+						restore : {
+							show : true
+						},
+						saveAsImage : {
+							show : true
+						}
+					}
+				},
+				calculable : true,
+				xAxis : [ {
+					type : 'category',
+					data : [ '黑色', '红色', '粉红色', '绿色', '白色', '蓝色', '橙色', '紫色',
+							'黄色']
+				} ],
+				yAxis : [ {
+					type : 'value'
+				} ],
+				series : [ {
+					name : '球衣',
+					type : 'bar',
+					data : frock,
+					markPoint : {
+						data : [ {
+							type : 'max',
+							name : '最大值'
+						}, {
+							type : 'min',
+							name : '最小值'
+						} ]
+					},
+					markLine : {
+						data : [ {
+							type : 'average',
+							name : '平均值'
+						} ]
+					}
+				}, {
+					name : '球裤',
+					type : 'bar',
+					data : pants,
+					markPoint : {
+						data : [ {
+							type : 'max',
+							name : '最大值'
+						}, {
+							type : 'min',
+							name : '最小值'
+						} ]
+					},
+					markLine : {
+						data : [ {
+							type : 'average',
+							name : '平均值'
+						} ]
+					}
+				}, {
+					name : '球鞋',
+					type : 'bar',
+					data : shots,
+					markPoint : {
+						data : [ {
+							type : 'max',
+							name : '最大值'
+						}, {
+							type : 'min',
+							name : '最小值'
+						} ]
+					},
+					markLine : {
+						data : [ {
+							type : 'average',
+							name : '平均值'
+						} ]
+					}
+				} ]
+			};
+ 
+			// 为echarts对象加载数据 
+			myChart.setOption(option);
+		});
+		});
+	</script>
+</body>
+</html>

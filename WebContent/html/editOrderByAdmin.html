@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>编辑商品</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+    <script src="../miniui_java/scripts/boot.js" type="text/javascript"></script>
+    
+	<script src="../miniui_java/demo/fileupload/swfupload/swfupload.js" type="text/javascript"></script>
+    <!-- <link href="../miniui_java/scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css" /> -->
+    <style type="text/css">
+    html, body
+    {        
+        padding:0;
+        margin:0;
+        border:0;
+        height:100%;
+        overflow:hidden;
+    }
+    </style>
+</head>
+<body>    
+     	<!-- target一定要设置 -->
+       <form id="form1" target="_parent" onsubmit="return isPhone()" method="post" action="http://localhost:8080/footballClub/admin_updateOrder.action">
+        <!-- id必须有设置成隐藏域，对于添加id可以是自动递增可以不写，但是对于修改，必须有，根据主键修改或者根据主键先查找实体后删除 -->
+        <input name="order.id" id="id" class="mini-hidden" />  
+        <input name="order.userId" id="userId" class="mini-hidden" />
+        <input name="order.goodsId" id="goodsId" class="mini-hidden" />
+        <div style="padding-left:11px;padding-bottom:5px;">  
+        <table style="table-layout:fixed;">
+           <tr>
+                <td style="width:80px;">用户:</td>
+                <td style="width:180px;">    
+                    <input name="username" id="username" class="mini-textbox" required="true" readonly/>
+                </td>    
+                <td style="width:80px;">商品名称:</td>
+                <td style="width:180px;">    
+                    <input name="goodname" id="goodname" class="mini-textbox" required="true" readonly/>
+                </td>      
+            </tr>
+            
+            <tr>
+            	 <td style="width:80px;">电话号码:</td>
+                <td style="width:180px;">    
+                    <input id="telPhone" name="order.telPhone" class="mini-textbox" required="true" emptyText="请输入商品颜色"/>
+                </td> 
+                <td >性别：</td>
+                <td >    
+                    <select name="order.sex" class="mini-radiobuttonlist" id="sex">
+                        	<option value="1">男</option>
+                        	<option value="0">女</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+            	 <td style="width:80px;">日期:</td>
+                <td style="width:180px;">    
+                    <input id="time" name="order.time" class="mini-datepicker" onDrawDate="selectDate" required="true" emptyText="请选择日期"/>
+                </td> 
+                <td >电子邮箱：</td>
+                <td >    
+                    <input name="order.email" id="email" class="mini-textbox" vtype="email"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td >详细地址：</td>
+                <td>    
+                    <input name="order.address" id="address" class="mini-textbox" required="true" emptyText="请输入详细地址"/>
+                </td>    
+            </tr>  
+         	<tr>
+        		<td >备注：</td>
+                <td colspan="3">    
+                    <input name="order.remasks" id="remasks" class="mini-textarea" />
+                </td>
+        	</tr>            
+        </table>            
+        </div>
+        <div style="text-align:center;padding:10px;">               
+            <!-- <a class="mini-button" style="width:60px;margin-right:20px;">确定</a>       
+            <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>     --> 
+            <button style="width:60px;margin-right:20px;">确定</button> 
+            <button onclick="onCancel" style="width:60px;">取消</button> 
+        </div>        
+    </form>
+    <script type="text/javascript">
+        mini.parse();
+
+
+        var form = new mini.Form("form1");
+
+        function SetData(data) {
+            if (data.action == "edit") {
+                //跨页面传递的数据对象，克隆后才可以安全使用
+                data = mini.clone(data);
+				//console.log(data.id);
+                $.ajax({
+                    url: "/footballClub/admin_initOrder.action?orderId=" + data.id,
+                    cache: false,
+                    success: function (text) {
+                        var o = mini.decode(text);
+                        console.log(o);
+                        //form.setData(o);
+                        mini.get("id").setValue(o.id);
+                        mini.get("userId").setValue(o.userId);
+                        mini.get("goodsId").setValue(o.goodsId);
+                        mini.get("username").setValue(o.username);
+                        mini.get("goodname").setValue(o.goodname);
+                        mini.get("telPhone").setValue(o.telPhone);
+                        mini.get("sex").setValue(o.sex);
+                        mini.get("time").setValue(o.time);
+                        mini.get("email").setValue(o.email);
+                        mini.get("address").setValue(o.address);
+                        mini.get("remasks").setValue(o.remasks);
+                        form.setChanged(false);
+                       
+                    }
+                }); 
+            }
+        }
+
+        function GetData() {
+            var o = form.getData();
+            return o;
+        }
+        function CloseWindow(action) {            
+            if (action == "close" && form.isChanged()) {
+                if (confirm("数据被修改了，是否先保存？")) {
+                    return false;
+                }
+            }
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();            
+        }
+       /*  function onOk(e) {     	
+			SaveData();
+        } */
+        function onCancel(e) {
+            CloseWindow("cancel");
+        }
+   //手机号校验
+        function isPhone(){
+      		 var phoneReg = /^1[3-578]\d{9}$/;   
+      		 var phone=mini.get("telPhone").getValue();
+      		     if(phoneReg.test(phone)){
+      		    	return true;
+      		     }else{
+      		    	 mini.alert("请输入正确的手机号");
+      		         return false;
+      		     }
+      	}
+      
+        //选择日期
+        function selectDate(e){
+     	   var date = new Date();
+     	   if(e.date<date){
+     		   e.allowSelect=false;
+     	   }
+        }
+    </script>
+</body>
+</html>

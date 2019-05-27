@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	
+	<class name="com.chzu.football.entity.Player" table="players">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="name"/>
+		<property name="age" column="age"/>
+		<property name="birth" column="birth"/>		
+		<property name="height" column="height"/>	
+		<property name="weight" column="weight"/>	
+		<property name="role" column="role"/>	
+		<property name="entryTime" column="entryTime"/>
+		<property name="careerAge" column="careerAge"/>
+		<property name="photoAdd" column="photoAdd"/>	
+	</class>
+	
+</hibernate-mapping>    
