@@ -19,7 +19,7 @@ import com.chzu.football.entity.Player;
 import com.chzu.football.entity.Post;
 import com.chzu.football.entity.User;
 import com.chzu.football.util.FastJsonUtil;
-//一般是在会出现异常 的方法上加事务注解
+//一般是在会出现异常 的方法上加事务注解(前提要在配置文件中配置事务管理)
 @Transactional
 @Service(value="userServiceImpl")
 public class UserServiceImpl implements IUserService
